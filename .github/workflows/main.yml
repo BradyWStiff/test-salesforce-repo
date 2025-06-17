@@ -1,0 +1,25 @@
+name: Check Metadata Ownership
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ownership-check:
+    name: Validate Metadata Ownership
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for diff to work across branches
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Ownership Check
+        run: python scripts/check_ownership.py
