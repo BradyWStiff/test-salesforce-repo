@@ -3,7 +3,7 @@ import json
 import subprocess
 import sys
 
-OWNERS_FILE = 'ownership/OWNERS.json'
+OWNERS_FILE = './OWNERS.json'
 
 # Get changed files in the PR (against main branch)
 result = subprocess.run(['git', 'diff', '--name-only', 'origin/main...'], capture_output=True, text=True)
