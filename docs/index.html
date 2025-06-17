@@ -1,7 +1,15 @@
-# 🧾 Metadata Ownership
-
-> Use the table below to explore metadata ownership in the US CRM Salesforce Org.
-<table id="owners-table" class="display" style="width:100%">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metadata Ownership</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <h1>🧾 Metadata Ownership</h1>
+    <p>Use the table below to explore metadata ownership in the US CRM Salesforce Org.</p>
+    <table id="owners-table" class="display" style="width:100%">
         <thead>
           <tr>
             <th>Type</th>
@@ -16,7 +24,6 @@
     <!-- Include dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <script>
       fetch('OWNERS.json')
@@ -37,3 +44,5 @@
         })
         .catch(err => console.error('Failed to fetch data:', err));
     </script>
+</body>
+</html>
