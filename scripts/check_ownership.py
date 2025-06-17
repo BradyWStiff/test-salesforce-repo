@@ -26,11 +26,6 @@ owned_paths = {entry['path'] for entry in owners}
 missing = [f for f in changed_files if f.startswith('force-app/') and f not in owned_paths]
 
 if missing:
-    print("\n❌ The following Salesforce metadata files are missing ownership entries in OWNERS.json:")
-    for f in missing:
-        print(f" - {f}")
-
-    print("\n🔧 Suggested entries to add to OWNERS.json:")
     suggestions = []
     for f in missing:
         parts = f.split('/')
@@ -43,8 +38,8 @@ if missing:
             "path": f
         }
         suggestions.append(suggestion)
+
     print(json.dumps(suggestions, indent=2))
-    print("\n💡 Copy the above entries into ownership/OWNERS.json and replace \"team-???\" with the appropriate team.")
-    sys.exit(1)
+    sys.exit(1)  # fail the job
 else:
     print("✅ All changed metadata files have ownership defined.")
