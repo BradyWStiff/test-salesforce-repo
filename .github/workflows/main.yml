@@ -14,8 +14,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run ownership check
-        id: check
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run ownership check and capture output
+        id: ownership
         run: |
           set +e
           output=$(python scripts/check_ownership.py)
@@ -27,16 +32,16 @@ jobs:
           exit $exit_code
 
       - name: Comment on PR if ownership is missing
-        if: failure()
+        if: failure()  # Only run this step if the previous one failed
         uses: actions/github-script@v6
         with:
           script: |
-            const output = `${{ steps.check.outputs.ownership_output }}`;
-            if (output.includes('"owner": "team-???"')) {
-              github.rest.issues.createComment({
+            const body = `${{ steps.ownership.outputs.ownership_output }}`;
+            if (body.includes('"owner": "team-???"')) {
+              await github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `🚨 **Missing Ownership Detected**\n\nPlease copy the following entries into \`OWNERS.json\`:\n\n\`\`\`json\n${output.trim()}\n\`\`\`\n\nReplace \`team-???\` with the appropriate team name before merging.`
+                body: `🚨 **Missing Ownership Detected**\n\nPlease add the following entries to \`ownership/OWNERS.json\`:\n\n\`\`\`json\n${body.trim()}\n\`\`\`\nReplace \`team-???\` with the appropriate owner.`
               });
             }
