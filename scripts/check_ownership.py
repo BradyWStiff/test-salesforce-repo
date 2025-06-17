@@ -2,6 +2,7 @@
 import json
 import subprocess
 import sys
+import os
 
 OWNERS_FILE = './OWNERS.json'
 
@@ -28,7 +29,22 @@ if missing:
     print("\n❌ The following Salesforce metadata files are missing ownership entries in OWNERS.json:")
     for f in missing:
         print(f" - {f}")
-    print("\nPlease add ownership for the above files in ownership/OWNERS.json before merging.")
+
+    print("\n🔧 Suggested entries to add to OWNERS.json:")
+    suggestions = []
+    for f in missing:
+        parts = f.split('/')
+        metadata_type = parts[3] if len(parts) > 3 else "unknown"
+        name = os.path.splitext(parts[-1])[0] if "." in parts[-1] else parts[-1]
+        suggestion = {
+            "metadata_type": metadata_type,
+            "metadata_name": name,
+            "owner": "team-???",
+            "path": f
+        }
+        suggestions.append(suggestion)
+    print(json.dumps(suggestions, indent=2))
+    print("\n💡 Copy the above entries into ownership/OWNERS.json and replace \"team-???\" with the appropriate team.")
     sys.exit(1)
 else:
     print("✅ All changed metadata files have ownership defined.")
