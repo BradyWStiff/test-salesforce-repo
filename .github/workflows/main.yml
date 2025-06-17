@@ -2,26 +2,41 @@ name: Check Metadata Ownership
 
 on:
   pull_request:
-    branches:
-      - main
-    paths:
-      - 'force-app/main/default/**' # Trigger only if changes are made in this directory
+    branches: [main]
 
 jobs:
   ownership-check:
-    name: Validate Metadata Ownership
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for diff to work across branches
+          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Run ownership check
+        id: check
+        run: |
+          set +e
+          output=$(python scripts/check_ownership.py)
+          echo "$output"
+          echo "ownership_output<<EOF" >> $GITHUB_OUTPUT
+          echo "$output" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          exit_code=$?
+          exit $exit_code
+
+      - name: Comment on PR if ownership is missing
+        if: failure()
+        uses: actions/github-script@v6
         with:
-          python-version: '3.x'
-
-      - name: Run Ownership Check
-        run: python scripts/check_ownership.py
+          script: |
+            const output = `${{ steps.check.outputs.ownership_output }}`;
+            if (output.includes('"owner": "team-???"')) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `🚨 **Missing Ownership Detected**\n\nPlease copy the following entries into \`OWNERS.json\`:\n\n\`\`\`json\n${output.trim()}\n\`\`\`\n\nReplace \`team-???\` with the appropriate team name before merging.`
+              });
+            }
