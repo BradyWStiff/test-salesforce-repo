@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Related Opportunities" icon-name="standard:opportunity">
+        <lightning-input type="file" label="Upload CSV" onchange={handleFileChange}></lightning-input>
+        <!-- sldsValidatorIgnoreNextLine -->
+        <lightning-datatable
+            key-field="Id"
+            data={opportunities}
+            columns={columns}
+            hide-checkbox-column
+            show-row-number-column>
+        </lightning-datatable>
+        <lightning-button label="Refresh Data" onclick={refreshDataTable} class="slds-m-around_medium"></lightning-button>
+    </lightning-card>
+</template>
