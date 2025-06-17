@@ -1,0 +1,26 @@
+[
+    {
+      "metadata_type": "classes",
+      "metadata_name": "CreateAccount.cls",
+      "owner": "team-alpha",
+      "path": "force-app/main/default/classes/CreateAccount.cls"
+    },
+    {
+      "metadata_type": "flows",
+      "metadata_name": "Send_Email_On_Trigger",
+      "owner": "team-delta",
+      "path": "force-app/main/default/flows/Send_Email_On_Trigger.flow-meta.xml"
+    },
+    {
+      "metadata_type": "triggers",
+      "metadata_name": "AccountTrigger",
+      "owner": "team-beta",
+      "path": "force-app/main/default/triggers/AccountTrigger.trigger"
+    },
+    {
+      "metadata_type": "staticresources",
+      "metadata_name": "CustomStyles",
+      "owner": "team-gamma",
+      "path": "force-app/main/default/staticresources/CustomStyles.resource"
+    }
+]
