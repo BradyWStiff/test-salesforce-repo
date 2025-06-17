@@ -22,5 +22,77 @@
       "metadata_name": "CustomStyles",
       "owner": "team-gamma",
       "path": "force-app/main/default/staticresources/CustomStyles.resource"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "CreateCasesWithContentBatch",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/CreateCasesWithContentBatch.cls"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "CreateCasesWithContentBatch.cls-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/CreateCasesWithContentBatch.cls-meta.xml"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "DataGenerationTest",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/DataGenerationTest.cls"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "DataGenerationTest.cls-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/DataGenerationTest.cls-meta.xml"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "OpportunityController",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/OpportunityController.cls"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "OpportunityController.cls-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/OpportunityController.cls-meta.xml"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "TestFactory",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/TestFactory.cls"
+    },
+    {
+      "metadata_type": "classes",
+      "metadata_name": "TestFactory.cls-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/classes/TestFactory.cls-meta.xml"
+    },
+    {
+      "metadata_type": "layouts",
+      "metadata_name": "Account-Account %28Marketing%29 Layout.layout-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/layouts/Account-Account %28Marketing%29 Layout.layout-meta.xml"
+    },
+    {
+      "metadata_type": "lwc",
+      "metadata_name": "relatedOpportunities",
+      "owner": "team-???",
+      "path": "force-app/main/default/lwc/relatedOpportunities/relatedOpportunities.html"
+    },
+    {
+      "metadata_type": "lwc",
+      "metadata_name": "relatedOpportunities",
+      "owner": "team-???",
+      "path": "force-app/main/default/lwc/relatedOpportunities/relatedOpportunities.js"
+    },
+    {
+      "metadata_type": "lwc",
+      "metadata_name": "relatedOpportunities.js-meta",
+      "owner": "team-???",
+      "path": "force-app/main/default/lwc/relatedOpportunities/relatedOpportunities.js-meta.xml"
     }
 ]
