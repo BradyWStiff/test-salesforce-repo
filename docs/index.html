@@ -24,7 +24,7 @@
     </table>
     
     <script>
-        fetch('../OWNERS.json')
+        fetch('./OWNERS.json')
           .then(response => response.json())
           .then(data => {
             const tbody = document.querySelector('#owners-table tbody');
