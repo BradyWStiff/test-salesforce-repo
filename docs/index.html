@@ -7,42 +7,46 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 </head>
 <body>
-    <h1>🧾 Metadata Ownership</h1>
-    <p>Use the table below to explore metadata ownership in the US CRM Salesforce Org.</p>
-    <table id="owners-table" class="display" style="width:100%">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Owner</th>
-            <th>Path</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
+    # 📋 Metadata Ownership
+
+    <p>This table is generated dynamically from <code>OWNERS.json</code>.</p>
+    
+    <table id="owners-table" style="border-collapse: collapse; width: 100%;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 6px;">Type</th>
+          <th style="border: 1px solid #ccc; padding: 6px;">Name</th>
+          <th style="border: 1px solid #ccc; padding: 6px;">Owner</th>
+          <th style="border: 1px solid #ccc; padding: 6px;">Path</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
-
-    <!-- Include dependencies -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
+    
     <script>
-      fetch('../OWNERS.json')
-        .then(res => res.json())
-        .then(data => {
-          const tbody = document.querySelector('#owners-table tbody');
-          data.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${item.metadata_type}</td>
-              <td>${item.metadata_name}</td>
-              <td>${item.owner}</td>
-              <td>${item.path}</td>
-            `;
-            tbody.appendChild(row);
+        fetch('./OWNERS.json')
+          .then(response => response.json())
+          .then(data => {
+            const tbody = document.querySelector('#owners-table tbody');
+            data.forEach(function(entry) {
+              const row = document.createElement('tr');
+              row.innerHTML =
+                '<td style="border: 1px solid #ccc; padding: 6px;">' + entry.metadata_type + '</td>' +
+                '<td style="border: 1px solid #ccc; padding: 6px;">' + entry.metadata_name + '</td>' +
+                '<td style="border: 1px solid #ccc; padding: 6px;">' + entry.owner + '</td>' +
+                '<td style="border: 1px solid #ccc; padding: 6px;"><code>' + entry.path + '</code></td>';
+              tbody.appendChild(row);
+            });
+          })
+          .catch(function(error) {
+            const table = document.querySelector('#owners-table');
+            const errorMsg = document.createElement('p');
+            errorMsg.style.color = 'red';
+            errorMsg.textContent = '⚠️ Failed to load OWNERS.json';
+            table.parentNode.insertBefore(errorMsg, table.nextSibling);
+            console.error('Error loading OWNERS.json:', error);
           });
-          $('#owners-table').DataTable(); // Activate DataTable
-        })
-        .catch(err => console.error('Failed to fetch data:', err));
-    </script>
+      </script>
+      
 </body>
 </html>
