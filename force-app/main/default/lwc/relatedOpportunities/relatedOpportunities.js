@@ -6,8 +6,9 @@ import insertOpportunities from '@salesforce/apex/OpportunityController.insertOp
 
 export default class RelatedOpportunities extends LightningElement {
     @api recordId; // Record ID of the current Account
-    opportunities;
+    opportunities; // This is a test
     wiredOpportunitiesResult;
+    testVariable;
 
     columns = [
         { label: 'Opportunity Name', fieldName: 'Name', type: 'text' },
