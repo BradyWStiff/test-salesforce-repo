@@ -24,11 +24,11 @@ jobs:
         run: |
           set +e
           output=$(python scripts/check_ownership.py)
+          exit_code=$?
           echo "$output"
           echo "ownership_output<<EOF" >> $GITHUB_OUTPUT
           echo "$output" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          exit_code=$?
           exit $exit_code
 
       - name: Comment on PR if ownership is missing
